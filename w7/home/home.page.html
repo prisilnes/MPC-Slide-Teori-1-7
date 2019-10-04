@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      W7 Template-Driven Form
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-list>
+            <ion-item>
+              <ion-label position="floating">Email</ion-label>
+              <ion-input
+                type="email"
+                ngModel
+                name="email"
+                required
+                #emailInput="ngModel"
+              ></ion-input>
+            </ion-item>
+            <ion-item
+              *ngIf="emailInput.invalid && emailInput.touched"
+              lines="none"
+            >
+              <ion-label color="danger" class="ion-text-right">
+                <i>Invalid email address</i>
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Password</ion-label>
+              <ion-input
+                type="password"
+                ngModel
+                name="password"
+                required
+                minlength="6"
+              ></ion-input>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button [disabled]="!f.valid" type="submit" expand="block"
+            >Sign In</ion-button
+          >
+          <ion-button fill="clear" expand="block">
+            Don't have an account?
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+  <ion-button color="secondary" expand='block' (click)="showAlertWithInputs()">SHOW ALERT</ion-button>
+</ion-content>
